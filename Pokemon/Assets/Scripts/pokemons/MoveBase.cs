@@ -1,3 +1,4 @@
+using NUnit.Compatibility;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Move", menuName = "Pokemon/Create new move")]
@@ -41,6 +42,22 @@ public class MoveBase : ScriptableObject
     public int PP
     {
         get { return pp; }
+    }
+
+    public bool IsSpecial
+    {
+        get
+        {
+            if (type == PokemonType.Fire || type == PokemonType.Water || type == PokemonType.Grass
+                || type == PokemonType.Ice || type == PokemonType.Electric || type == PokemonType.Dragon)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 
 }
