@@ -1,5 +1,5 @@
+using System;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 public class PlayerController : MonoBehaviour
@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed;
     public LayerMask solidObjectsLayer;
     public LayerMask grassLayer;
+
+    public event Action OnEncountered;
 
     private bool isMoving;
     private Vector2 input;
@@ -18,7 +20,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    public void Update()
+    public void HandleUpdate()
     {
         if (!isMoving)
         {
@@ -76,7 +78,8 @@ public class PlayerController : MonoBehaviour
         {
             if (Random.Range(1, 101) <= 10)
             {
-                Debug.Log("야생 포켓몬 만남");
+                animator.SetBool("isMoving", false);
+                OnEncountered();
             }
         }
     }
