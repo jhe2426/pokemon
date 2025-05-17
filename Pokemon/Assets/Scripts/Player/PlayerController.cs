@@ -1,11 +1,12 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
-
+using Random = UnityEngine.Random;
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed;
     public LayerMask solidObjectsLayer;
+    public LayerMask grassLayer;
 
     private bool isMoving;
     private Vector2 input;
@@ -55,6 +56,8 @@ public class PlayerController : MonoBehaviour
         transform.position = targetPos;
 
         isMoving = false;
+
+        CheckForEncounters();
     }
 
     private bool IsWalkalbe(Vector3 targetPos) 
@@ -65,5 +68,16 @@ public class PlayerController : MonoBehaviour
         }
 
         return true;
+    }
+
+    private void CheckForEncounters() 
+    {
+        if (Physics2D.OverlapCircle(transform.position, 0.2f, grassLayer) != null)
+        {
+            if (Random.Range(1, 101) <= 10)
+            {
+                Debug.Log("야생 포켓몬 만남");
+            }
+        }
     }
 }
