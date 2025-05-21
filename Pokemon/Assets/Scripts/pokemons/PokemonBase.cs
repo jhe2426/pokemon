@@ -129,6 +129,14 @@ public enum PokemonType
     Dragon
 }
 
+public enum Stat
+{
+    Attack,
+    Defense,
+    SpAttack,
+    SpDefense,
+    Speed
+}
 
 // Type마다의 공격의 데미지 영향
 public class TypeChart
