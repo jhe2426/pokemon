@@ -30,6 +30,8 @@ public class Pokemon
     public Dictionary<Stat, int> Stats { get; private set; }
     public Dictionary<Stat, int> StatBoosts { get; private set; }
 
+    public Queue<string> StatusChanges { get; private set; } = new Queue<string>();
+
     public void Init()
     {
         // Generate Moves
@@ -46,6 +48,11 @@ public class Pokemon
         CalculateStats();
         HP = MaxHp;
 
+        ResetStatBoost();
+    }
+
+    void ResetStatBoost()
+    {
         StatBoosts = new Dictionary<Stat, int>()
         {
             {Stat.Attack, 0},
@@ -79,7 +86,7 @@ public class Pokemon
             statVal = Mathf.FloorToInt(statVal * boostValues[boost]);
         else
             statVal = Mathf.FloorToInt(statVal / boostValues[-boost]);
-        
+
 
         return statVal;
     }
@@ -93,8 +100,25 @@ public class Pokemon
 
             StatBoosts[stat] = Mathf.Clamp(StatBoosts[stat] + boost, -6, 6);
 
+            string statString = GetKoreaStat(statBoost);
+            if (boost > 0)
+                StatusChanges.Enqueue($"{Base.Name}의 {statString}가 올랐다!");
+
+            else
+                StatusChanges.Enqueue($"{Base.Name}의 {statString}가 떨어졌다!");
+
             Debug.Log($"{stat} has been boosted to {StatBoosts[stat]}");
         }
+    }
+
+    private string GetKoreaStat(StatBoost statBoost)
+    {
+        if (statBoost.stat == Stat.Attack)
+            return "공격력";
+        else if (statBoost.stat == Stat.Defense)
+            return "방어력";
+
+        return null;
     }
 
     public int Attack
@@ -161,6 +185,11 @@ public class Pokemon
     {
         int r = Random.Range(0, Moves.Count);
         return Moves[r];
+    }
+
+    public void OnBattleOver()
+    {
+        ResetStatBoost();
     }
 }
 
