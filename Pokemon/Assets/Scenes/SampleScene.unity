@@ -1908,15 +1908,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pokemons:
-  - _base: {fileID: 11400000, guid: b5b1680cf84fc4837acac458d0f2dd85, type: 2}
-    level: 7
+  - _base: {fileID: 11400000, guid: 779bb1b5cef5b427b8d29c111876b6d3, type: 2}
+    level: 10
   - _base: {fileID: 11400000, guid: 11aab467da0954107aac6933842410f8, type: 2}
     level: 3
   - _base: {fileID: 11400000, guid: 11aab467da0954107aac6933842410f8, type: 2}
     level: 2
   - _base: {fileID: 11400000, guid: 11aab467da0954107aac6933842410f8, type: 2}
     level: 5
-  - _base: {fileID: 11400000, guid: 11aab467da0954107aac6933842410f8, type: 2}
+  - _base: {fileID: 11400000, guid: b5b1680cf84fc4837acac458d0f2dd85, type: 2}
     level: 6
 --- !u!1 &773713183
 GameObject:
