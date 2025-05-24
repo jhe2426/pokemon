@@ -1,0 +1,29 @@
+using UnityEngine;
+
+public class GameLayers : MonoBehaviour
+{
+    [SerializeField] LayerMask solidObjectsLayer;
+    [SerializeField] LayerMask interactabLayer;
+    [SerializeField] LayerMask grassLayer;
+
+    public static GameLayers i { get; set; }
+    private void Awake()
+    {
+        i = this;
+    }
+
+    public LayerMask SolidLayer
+    {
+        get => solidObjectsLayer;
+    }
+
+    public LayerMask InteractabLayer
+    {
+        get => interactabLayer;
+    }
+
+    public LayerMask GrassLayer
+    {
+        get => grassLayer;
+    }
+}
