@@ -135,7 +135,11 @@ public enum Stat
     Defense,
     SpAttack,
     SpDefense,
-    Speed
+    Speed,
+
+    // These 2 are not actual stats, they're used to boost the moveAccuracy
+    Accuracy,
+    Evasion
 }
 
 // Type마다의 공격의 데미지 영향

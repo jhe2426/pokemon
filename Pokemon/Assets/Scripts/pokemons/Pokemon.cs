@@ -69,6 +69,8 @@ public class Pokemon
             {Stat.SpAttack, 0},
             {Stat.SpDefense, 0},
             {Stat.Speed, 0},
+            {Stat.Accuracy, 0},
+            {Stat.Evasion, 0},
         };
     }
 
@@ -111,10 +113,10 @@ public class Pokemon
 
             string statString = GetKoreaStat(statBoost);
             if (boost > 0)
-                StatusChanges.Enqueue($"{Base.Name}의 {statString}가 올랐다!");
+                StatusChanges.Enqueue($"{Base.Name}의 {statString}이(가) 올랐다!");
 
             else
-                StatusChanges.Enqueue($"{Base.Name}의 {statString}가 떨어졌다!");
+                StatusChanges.Enqueue($"{Base.Name}의 {statString}이(가) 떨어졌다!");
 
             Debug.Log($"{stat} has been boosted to {StatBoosts[stat]}");
         }
@@ -126,6 +128,16 @@ public class Pokemon
             return "공격력";
         else if (statBoost.stat == Stat.Defense)
             return "방어력";
+        else if (statBoost.stat == Stat.SpAttack)
+            return "특수공격력";
+        else if (statBoost.stat == Stat.SpDefense)
+            return "특수방어력";
+        else if (statBoost.stat == Stat.Speed)
+            return "속도";
+        else if (statBoost.stat == Stat.Accuracy)
+            return "명중률";
+        else if (statBoost.stat == Stat.Evasion)
+            return "회피율";
 
         return null;
     }
