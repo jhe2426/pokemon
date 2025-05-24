@@ -5,16 +5,16 @@ using DG.Tweening;
 public class BattleUnit : MonoBehaviour
 {
     [SerializeField] bool isPlayerUnit;
-    [SerializeField] BattleHud hub;
+    [SerializeField] BattleHud hud;
 
     public bool IsPlayerUnit
     {
         get { return isPlayerUnit; }
     }
 
-    public BattleHud Hub
+    public BattleHud Hud
     { 
-        get { return hub; }
+        get { return hud; }
     }
 
     public Pokemon Pokemon { get; set; }
@@ -39,7 +39,7 @@ public class BattleUnit : MonoBehaviour
         else
             image.sprite = Pokemon.Base.FrontSprite;
 
-        hub.SetData(pokemon);
+        hud.SetData(pokemon);
 
         image.color = originalColor;
         PlayEnterAnimation();

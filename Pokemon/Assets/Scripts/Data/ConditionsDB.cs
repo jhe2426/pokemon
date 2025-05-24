@@ -4,6 +4,17 @@ using UnityEngine;
 public class ConditionsDB
 {
 
+    public static void Init()
+    {
+        foreach (var kvp in Conditions)
+        {
+            var conditionId = kvp.Key;
+            var condition = kvp.Value;
+
+            condition.Id = conditionId;
+        }
+    }
+
     public static Dictionary<ConditionID, Condition> Conditions { get; set; } = new Dictionary<ConditionID, Condition>()
     {
         {
@@ -15,7 +26,7 @@ public class ConditionsDB
                 OnAfterTurn = (Pokemon pokemon) =>
                 {
                     pokemon.UpdateHP(pokemon.MaxHp / 8);
-                    pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name}가 독에 의해 고통받고 있다.");
+                    pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name}이(가) 독에 의해 고통받고 있다.");
                 }
             }
         },
@@ -87,7 +98,7 @@ public class ConditionsDB
                     if (pokemon.StatusTime <= 0)
                     {
                         pokemon.CureStatus();
-                        pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name}이 잠에서 깨어났다!");
+                        pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name}이(가) 잠에서 깨어났다!");
                         return true;
                     }
 
@@ -96,10 +107,48 @@ public class ConditionsDB
                     return false;
                 }
             }
+        },
+        
+        // Volatile Status Conditions
+        {
+            ConditionID.confusion,
+            new Condition()
+            {
+                Name = "Confusion",
+                StartMessage = "혼수 상태에 빠졌다!",
+                OnStart = (Pokemon pokemon) =>
+                { 
+                    // 혼수 상태는 1턴에서 4턴 사이의 턴만큼 혼수 상태가 된다.
+                    pokemon.VolatileStatusTime = Random.Range(1, 5);
+                    Debug.Log($"{pokemon.VolatileStatusTime}턴 동안 혼수 상태에 빠진다.");
+                },
+                OnBeforeMove = (Pokemon pokemon) =>
+                {
+
+                    if (pokemon.VolatileStatusTime <= 0)
+                    {
+                        pokemon.CureVolatileStatus();
+                        pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name}이(가) 혼수 상태에서 깨어났다!");
+                        return true;
+                    }
+                    pokemon.VolatileStatusTime--;
+
+                    // 50% chance to do a move
+                    if (Random.Range(1, 3) == 1)
+                        return true;
+                    
+                    // Hurt by confusion
+                    pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name}는 혼수 상태이다.");
+                    pokemon.UpdateHP(pokemon.MaxHp / 8);
+                    pokemon.StatusChanges.Enqueue($"혼란에 빠져서 스스로에게 피해를 입었다!");
+                    return false;
+                }
+            }
         }
     };
 }
 public enum ConditionID
-    {
-        none, psn, brn, slp, par, frz
+{
+    none, psn, brn, slp, par, frz,
+    confusion
     }

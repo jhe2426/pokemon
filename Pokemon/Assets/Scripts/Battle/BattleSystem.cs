@@ -125,6 +125,7 @@ public class BattleSystem : MonoBehaviour
         if (!canRunMove)
         {
             yield return ShowStatusChanges(sourceUnit.Pokemon);
+            yield return sourceUnit.Hud.UpdateHp();
             yield break;
         }
         yield return ShowStatusChanges(sourceUnit.Pokemon);
@@ -143,7 +144,7 @@ public class BattleSystem : MonoBehaviour
         else
         {
             var damageDetails = targetUnit.Pokemon.TakeDamage(move, sourceUnit.Pokemon);
-            yield return targetUnit.Hub.UpdateHp();
+            yield return targetUnit.Hud.UpdateHp();
             yield return ShowDamageDetails(damageDetails);
         }
 
@@ -159,7 +160,7 @@ public class BattleSystem : MonoBehaviour
         // Statuses like burn or psn will hurt the pokemon after the turn
         sourceUnit.Pokemon.OnAfterTurn();
         yield return ShowStatusChanges(sourceUnit.Pokemon);
-        yield return sourceUnit.Hub.UpdateHp();
+        yield return sourceUnit.Hud.UpdateHp();
         if (sourceUnit.Pokemon.HP <= 0)
         {
             yield return dialogBox.TypeDialog($"{sourceUnit.Pokemon.Base.Name}가 기절했습니다.");
@@ -187,6 +188,12 @@ public class BattleSystem : MonoBehaviour
         if (effects.Status != ConditionID.none)
         {
             target.SetStatus(effects.Status);
+        }
+
+        // Volatile Status Condition
+        if (effects.VolatileStatus != ConditionID.none)
+        {
+            target.SetVolatileStatus(effects.VolatileStatus);
         }
 
         yield return ShowStatusChanges(source);
