@@ -375,6 +375,81 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1549264078}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &150516310
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 150516311}
+  - component: {fileID: 150516313}
+  - component: {fileID: 150516312}
+  m_Layer: 0
+  m_Name: PlayerCharacter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &150516311
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 150516310}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 870906760}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -197.999, y: -55.2}
+  m_SizeDelta: {x: 200, y: 200}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &150516312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 150516310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 5607302010678801072, guid: 9e37a54a882f24ae6a4e8f33f09dff2d, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &150516313
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 150516310}
+  m_CullTransparentMesh: 1
 --- !u!1 &213259002
 GameObject:
   m_ObjectHideFlags: 0
@@ -1555,6 +1630,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cef6185959a3a4b4984722d33b96bace, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: "\uBBFC\uADDC"
+  sprite: {fileID: 5607302010678801072, guid: 9e37a54a882f24ae6a4e8f33f09dff2d, type: 3}
 --- !u!114 &745723224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1568,7 +1645,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pokemons:
-  - _base: {fileID: 11400000, guid: dde347b7f5ab940569d281b6370fa209, type: 2}
+  - _base: {fileID: 11400000, guid: b5b1680cf84fc4837acac458d0f2dd85, type: 2}
     level: 8
   - _base: {fileID: 11400000, guid: 11aab467da0954107aac6933842410f8, type: 2}
     level: 3
@@ -2468,6 +2545,8 @@ RectTransform:
   - {fileID: 1086498910}
   - {fileID: 935430358}
   - {fileID: 39662783}
+  - {fileID: 150516311}
+  - {fileID: 1182158035}
   - {fileID: 1398879874}
   - {fileID: 666369918}
   - {fileID: 873914886}
@@ -3226,6 +3305,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1086498909}
   m_CullTransparentMesh: 1
+--- !u!1 &1182158034
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1182158035}
+  - component: {fileID: 1182158037}
+  - component: {fileID: 1182158036}
+  m_Layer: 0
+  m_Name: TrainerCharacter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1182158035
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1182158034}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 870906760}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 193, y: 118.54}
+  m_SizeDelta: {x: 112.96, y: 244.27}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1182158036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1182158034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -6815444706308093326, guid: 427214d29ed7741f9bd0d7fb2544a05b, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1182158037
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1182158034}
+  m_CullTransparentMesh: 1
 --- !u!1 &1276530979
 GameObject:
   m_ObjectHideFlags: 0
@@ -3811,6 +3965,7 @@ GameObject:
   - component: {fileID: 1549264073}
   - component: {fileID: 1549264072}
   - component: {fileID: 1549264079}
+  - component: {fileID: 1549264080}
   m_Layer: 10
   m_Name: Trainer
   m_TagString: Untagged
@@ -3863,7 +4018,7 @@ MonoBehaviour:
   - {fileID: 7369579285134121275, guid: 0393d7e19f2dc444892a4767f488800b, type: 3}
   - {fileID: -1211714280344312584, guid: 0393d7e19f2dc444892a4767f488800b, type: 3}
   - {fileID: 6842672397523141539, guid: 0393d7e19f2dc444892a4767f488800b, type: 3}
-  defaultDirection: 2
+  defaultDirection: 1
 --- !u!61 &1549264075
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4021,11 +4176,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77d68cf21f5f14a41b4939ffe5588d63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: "\uC5D8\uB9AC\uD2B8 \uD2B8\uB808\uC774\uB108"
+  sprite: {fileID: -6815444706308093326, guid: 427214d29ed7741f9bd0d7fb2544a05b, type: 3}
   dialog:
     lines:
     - 'My pokemons are strong. Let me show you '
   exclamation: {fileID: 110347326}
   fov: {fileID: 988570201}
+--- !u!114 &1549264080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1549264071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a37e69096efb5460bb2dc7a53635cc82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pokemons:
+  - _base: {fileID: 11400000, guid: dde347b7f5ab940569d281b6370fa209, type: 2}
+    level: 6
+  - _base: {fileID: 11400000, guid: 779bb1b5cef5b427b8d29c111876b6d3, type: 2}
+    level: 8
 --- !u!1 &1712231956
 GameObject:
   m_ObjectHideFlags: 0
@@ -12748,6 +12922,8 @@ MonoBehaviour:
   enemyUnit: {fileID: 39662784}
   dialogBox: {fileID: 1398879877}
   partyScreen: {fileID: 213259006}
+  playerImage: {fileID: 150516312}
+  trainerImage: {fileID: 1182158036}
 --- !u!1 &1758937504
 GameObject:
   m_ObjectHideFlags: 0
