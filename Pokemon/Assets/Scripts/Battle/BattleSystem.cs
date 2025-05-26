@@ -258,11 +258,7 @@ public class BattleSystem : MonoBehaviour
 
             if (targetUnit.Pokemon.HP <= 0)
             {
-                yield return dialogBox.TypeDialog($"{targetUnit.Pokemon.Base.Name}가 기절했습니다.");
-                targetUnit.PlayFaintAnimation();
-                yield return new WaitForSeconds(2f);
-
-                CheckForBattleOver(targetUnit);
+                yield return HandlePokemonFainted(targetUnit);
             }
         }
         else
@@ -309,11 +305,7 @@ public class BattleSystem : MonoBehaviour
         yield return sourceUnit.Hud.UpdateHp();
         if (sourceUnit.Pokemon.HP <= 0)
         {
-            yield return dialogBox.TypeDialog($"{sourceUnit.Pokemon.Base.Name}가 기절했습니다.");
-            sourceUnit.PlayFaintAnimation();
-            yield return new WaitForSeconds(2f);
-
-            CheckForBattleOver(sourceUnit);
+            yield return HandlePokemonFainted(sourceUnit);
             yield return new WaitUntil(() => state == BattleState.RunningTurn);
         }
     }
@@ -351,6 +343,33 @@ public class BattleSystem : MonoBehaviour
             yield return dialogBox.TypeDialog(message);
         }
     }
+
+    IEnumerator HandlePokemonFainted(BattleUnit faintedUnit)
+    { 
+        yield return dialogBox.TypeDialog($"{faintedUnit.Pokemon.Base.Name}가 기절했습니다.");
+        faintedUnit.PlayFaintAnimation();
+        yield return new WaitForSeconds(2f);
+
+        if (!faintedUnit.IsPlayerUnit)
+        {
+            // Exp Gain
+            int expYield = faintedUnit.Pokemon.Base.ExpYield;
+            int enemyLevel = faintedUnit.Pokemon.Level;
+            float trainerBonus = (isTrainerBattle) ? 1.5f : 1f;
+
+            int expGain = Mathf.FloorToInt((expYield * enemyLevel * trainerBonus) / 7);
+            playerUnit.Pokemon.Exp += expGain;
+            yield return dialogBox.TypeDialog($"{playerUnit.Pokemon.Base.Name}이(가) {expGain} 만큼의 경험치를 얻었습니다.");
+            yield return playerUnit.Hud.SetExpSmooth();
+
+            // Check Lecel Up
+
+            yield return new WaitForSeconds(1f);
+        }
+
+        CheckForBattleOver(faintedUnit);
+    }
+
 
     void CheckForBattleOver(BattleUnit faintedUnit)
     {
