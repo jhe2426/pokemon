@@ -50,5 +50,8 @@ TagManager:
   - name: Player
     uniqueID: 2267831407
     locked: 0
+  - name: Battle
+    uniqueID: 2249488587
+    locked: 0
   m_RenderingLayers:
   - Default

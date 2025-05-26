@@ -278,28 +278,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pokeball
-      rect:
-        serializedVersion: 2
-        x: 77
-        y: 51
-        width: 24
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 34c06b8fdebc170a0800000000000000
-      internalID: -6885498132332409789
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: balls_7
       rect:
         serializedVersion: 2
@@ -405,6 +383,28 @@ TextureImporter:
       bones: []
       spriteID: 1fe8140977698f580800000000000000
       internalID: -8793112832175403279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pokeball
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 51
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1112e0ecfdf9423fb6cdb36ede1f426
+      internalID: -6885498132332409789
       vertices: []
       indices: 
       edges: []

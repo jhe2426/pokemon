@@ -1021,7 +1021,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 000000006fab5a996f5c2c87216eb943
+  m_ApplyToSortingLayers: 000000006fab5a996f5c2c87216eb943cb781486
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -2776,7 +2776,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: -2045478709
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!1001 &873914885
@@ -13089,6 +13089,7 @@ MonoBehaviour:
   partyScreen: {fileID: 213259006}
   playerImage: {fileID: 150516312}
   trainerImage: {fileID: 1182158036}
+  pokeballSprite: {fileID: 7743582112042750601, guid: 538b13bf5ef674efebebdb9182c61c13, type: 3}
 --- !u!1 &1758937504
 GameObject:
   m_ObjectHideFlags: 0
