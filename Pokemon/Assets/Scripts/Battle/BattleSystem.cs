@@ -35,6 +35,8 @@ public class BattleSystem : MonoBehaviour
     PlayerController player;
     TrainerController trainer;
 
+    int escapeAttempts;
+
     public void StartBattle(PokemonParty playerParty, Pokemon wildPokemon)
     {
         this.playerParty = playerParty;
@@ -102,6 +104,7 @@ public class BattleSystem : MonoBehaviour
             dialogBox.SetMoveNames(playerUnit.Pokemon.Moves);
         }
 
+        escapeAttempts = 0;
         partyScreen.Init();
         ActionSelection();
     }
@@ -182,7 +185,6 @@ public class BattleSystem : MonoBehaviour
                 if (state == BattleState.BattleOver) yield break;
             }
         }
-        // 플레이어가 포켓몬을 교체할 때의 로직
         else
         {
             // 플레이어가 포켓몬을 교체
@@ -197,9 +199,13 @@ public class BattleSystem : MonoBehaviour
                 dialogBox.EnableActionSelector(false);
                 yield return ThrowPokeball();
             }
+            else if (playerAction == BattleAction.Run)
+            {
+                yield return TryToEscape();
+            }
 
             // Enemy Turn
-                var enemyMove = enemyUnit.Pokemon.GetRandomMove();
+            var enemyMove = enemyUnit.Pokemon.GetRandomMove();
             yield return RunMove(enemyUnit, playerUnit, enemyMove);
             yield return RunAfterTurn(enemyUnit);
             if (state == BattleState.BattleOver) yield break;
@@ -439,6 +445,7 @@ public class BattleSystem : MonoBehaviour
             else if (currentAction == 3)
             {
                 // 도망치다 선택
+                StartCoroutine(RunTurns(BattleAction.Run));
             }
 
         }
@@ -682,5 +689,44 @@ public class BattleSystem : MonoBehaviour
         }
 
         return shakeCount;
+    }
+
+    IEnumerator TryToEscape()
+    {
+        state = BattleState.Busy;
+
+        if (isTrainerBattle)
+        {
+            yield return dialogBox.TypeDialog($"트레이너와의 배틀에서는 도망칠 수 없습니다!");
+            state = BattleState.RunningTurn;
+            yield break;
+        }
+
+        ++escapeAttempts;
+
+        int playerSpeed = playerUnit.Pokemon.Speed;
+        int enemySpeed = enemyUnit.Pokemon.Speed;
+
+        if (enemySpeed < playerSpeed)
+        {
+            yield return dialogBox.TypeDialog($"무사히 도망쳤다!");
+            BattleOver(true);
+        }
+        else
+        {
+            float f = (playerSpeed * 128) / enemySpeed + 30 * escapeAttempts;
+            f = f % 256;
+
+            if (UnityEngine.Random.Range(0, 256) < f)
+            {
+                yield return dialogBox.TypeDialog($"무사히 도망쳤다!");
+                BattleOver(true);
+            }
+            else
+            {
+                yield return dialogBox.TypeDialog($"도망칠 수 없다!");
+                state = BattleState.RunningTurn;
+            }
+        }
     }
 }
