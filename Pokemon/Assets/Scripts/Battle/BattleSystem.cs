@@ -42,6 +42,7 @@ public class BattleSystem : MonoBehaviour
         this.playerParty = playerParty;
         this.wildPokemon = wildPokemon;
         player = playerParty.GetComponent<PlayerController>();
+        isTrainerBattle = false;
 
         StartCoroutine(SetupBattle());
     }
@@ -363,6 +364,13 @@ public class BattleSystem : MonoBehaviour
             yield return playerUnit.Hud.SetExpSmooth();
 
             // Check Lecel Up
+            while (playerUnit.Pokemon.CheckForLevelUp())
+            {
+                playerUnit.Hud.SetLevel();
+                yield return dialogBox.TypeDialog($"{playerUnit.Pokemon.Base.Name}는 레벨{playerUnit.Pokemon.Level}으로 올랐다!");
+
+                yield return playerUnit.Hud.SetExpSmooth(true);
+            }
 
             yield return new WaitForSeconds(1f);
         }
