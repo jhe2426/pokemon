@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b91c9e41d6e554e5b81037818706aefb, type: 3}
   m_Name: FlameThrower
   m_EditorClassIdentifier: 
-  name: FlameThrower
+  name: Flame Thrower
   description: 
   type: 2
   power: 90
