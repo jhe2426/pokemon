@@ -361,6 +361,7 @@ public class BattleSystem : MonoBehaviour
             int expGain = Mathf.FloorToInt((expYield * enemyLevel * trainerBonus) / 7);
             playerUnit.Pokemon.Exp += expGain;
             yield return dialogBox.TypeDialog($"{playerUnit.Pokemon.Base.Name}이(가) {expGain} 만큼의 경험치를 얻었습니다.");
+
             yield return playerUnit.Hud.SetExpSmooth();
 
             // Check Lecel Up
@@ -368,6 +369,22 @@ public class BattleSystem : MonoBehaviour
             {
                 playerUnit.Hud.SetLevel();
                 yield return dialogBox.TypeDialog($"{playerUnit.Pokemon.Base.Name}는 레벨{playerUnit.Pokemon.Level}으로 올랐다!");
+
+                // Try to learn a new Move
+                var newMove = playerUnit.Pokemon.GetLearnableMoveAtCurrLevel();
+                if (newMove != null)
+                {
+                    if (playerUnit.Pokemon.Moves.Count < PokemonBase.MaxNumOfMoves)
+                    {
+                        playerUnit.Pokemon.LearnMove(newMove);
+                        yield return dialogBox.TypeDialog($"{playerUnit.Pokemon.Base.Name}이(가) {newMove.Base.Name} 기술을 익혔다!");
+                        dialogBox.SetMoveNames(playerUnit.Pokemon.Moves);
+                    }
+                    else
+                    {
+                        // TODO: Option to forget a move
+                    }
+                }
 
                 yield return playerUnit.Hud.SetExpSmooth(true);
             }
