@@ -377,6 +377,10 @@ PrefabInstance:
       propertyPath: uniqueId
       value: a6ab8ef9-3ed5-42c1-b2e6-5f095f32d3ca
       objectReference: {fileID: 0}
+    - target: {fileID: 2535385175896351458, guid: 486051479e0764fae8e231311bd3ec5f, type: 3}
+      propertyPath: pokemons.Array.data[0].level
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5161226738459304837, guid: 486051479e0764fae8e231311bd3ec5f, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
