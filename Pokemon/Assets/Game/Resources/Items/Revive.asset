@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 01baad333aaa046d6ad9118b859710bf, type: 3}
-  m_Name: Awakeing
+  m_Name: Revive
   m_EditorClassIdentifier: 
-  name: Awakening
-  description: "\uD3EC\uCF13\uBAAC\uC758 \uC7A0 \uC0C1\uD0DC\uB97C \uD68C\uBCF5\uD569\uB2C8\uB2E4."
-  icon: {fileID: -1130307063785972239, guid: 6df06daf1ed0f4c3ca047fc1a4e7e397, type: 3}
+  name: Revive
+  description: "\uAE30\uC808\uD55C \uD3EC\uCF13\uBAAC\uC744 \uBD80\uD65C\uC2DC\uD0B5\uB2C8\uB2E4."
+  icon: {fileID: 1858786021459822849, guid: 6df06daf1ed0f4c3ca047fc1a4e7e397, type: 3}
   hpAmount: 0
   restoreMaxHP: 0
   ppAmount: 0
   restoreMaxPP: 0
-  status: 3
+  status: 0
   recoverAllStatus: 0
-  revive: 0
+  revive: 1
   maxRevive: 0

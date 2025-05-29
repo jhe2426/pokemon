@@ -28,6 +28,11 @@ public class GameController : MonoBehaviour
 
         menuController = GetComponent<MenuController>();
 
+        // 가방에서 아이템 스크롤할 때 마이스 휠로 작동하지 않도록 하는 코드
+        // 마우스 포인트도 안 보이기 때문에 개발과정에서 번거롭기 때문에 주석함
+        // Cursor.lockState = CursorLockMode.Locked;
+        // Cursor.visible = false;
+
         PokemonDB.Init();
         MoveDB.Init();
         ConditionsDB.Init();
