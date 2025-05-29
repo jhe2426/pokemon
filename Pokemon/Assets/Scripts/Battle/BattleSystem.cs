@@ -400,6 +400,7 @@ public class BattleSystem : MonoBehaviour
                         yield return dialogBox.TypeDialog($"하지만 기술은 {PokemonBase.MaxNumOfMoves}개 이상 배울 수 없습니다.");
                         yield return ChooseMoveToForegt(playerUnit.Pokemon, newMove.Base);
                         yield return new WaitUntil(() => state != BattleState.MoveToForget);
+                        dialogBox.SetMoveNames(playerUnit.Pokemon.Moves);
                         yield return new WaitForSeconds(2f);
                     }
                 }
