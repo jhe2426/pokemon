@@ -191,7 +191,7 @@ public class InventoryUI : MonoBehaviour
         }
         else
         {
-            if (usedItem is RecoveryItem)
+            if (selectedCategory == (int)ItemCategory.Items)
                 yield return DialogManager.Instance.ShowDialogText($"아무 일도 일어나지 않았다!");
         }
 
