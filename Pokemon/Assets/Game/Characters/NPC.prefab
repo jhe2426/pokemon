@@ -183,6 +183,7 @@ MonoBehaviour:
     lines:
     - Hi, have you tried walking through the long grass
     - you can find lots of cool pokemons in there
+  questToStart: {fileID: 11400000, guid: 93647919f11c94b9485739a2dd5492d5, type: 2}
   movementPattern:
   - {x: 2, y: 0}
   - {x: 0, y: -2}

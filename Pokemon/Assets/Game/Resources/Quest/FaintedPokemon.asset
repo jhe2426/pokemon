@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcb4add2ba3d344c9a2ae61e6cb1eaa7, type: 3}
+  m_Name: FaintedPokemon
+  m_EditorClassIdentifier: 
+  name: FaintedPokemon
+  description: 
+  startDialogue:
+    lines:
+    - "\uB0B4 \uD3EC\uCF13\uBAAC\uC774 \uAE30\uC808\uD588\uC5B4"
+    - "\uBD80\uD65C\uC57D \uC880 \uAC16\uB2E4\uC904 \uC218 \uC788\uC5B4?"
+  inProgressDialogue:
+    lines:
+    - "\uBD80\uD65C\uC57D \uC880 \uAC00\uC838\uB2E4 \uC918"
+  completedDialogue:
+    lines:
+    - "\uC624, \uAC00\uC838\uC654\uAD6C\uB098! \uC815\uB9D0 \uACE0\uB9C8\uC6CC!"
+    - "HM\uC744 \uBCF4\uC0C1\uC73C\uB85C \uC904\uAC8C"
+  requiredItem: {fileID: 11400000, guid: a0f49ef8c679347219df0de0a6b98508, type: 2}
+  rewardItem: {fileID: 11400000, guid: 277170844bdd443e0bec0d5a01c03339, type: 2}
