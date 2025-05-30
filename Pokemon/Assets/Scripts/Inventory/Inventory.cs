@@ -136,7 +136,7 @@ public class ItemSlot
 
     public ItemSlot()
     { 
-
+        
     }
 
     public ItemSlot(ItemSaveData saveData)
