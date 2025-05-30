@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Pickup : MonoBehaviour, Interactable
+public class Pickup : MonoBehaviour, Interactable, ISavable
 {
     [SerializeField] ItemBase item;
 
@@ -21,6 +21,22 @@ public class Pickup : MonoBehaviour, Interactable
             string playerName = initiator.GetComponent<PlayerController>().Name;
 
             yield return DialogManager.Instance.ShowDialogText($"{playerName}이(가) {item.Name}을(를) 발견했다!");
+        }
+    }
+
+    public object CaptureState()
+    {
+        return Used;
+    }
+
+    public void RestoreState(object state)
+    {
+        Used = (bool)state;
+
+        if (Used)
+        { 
+            GetComponent<SpriteRenderer>().enabled = false;
+            GetComponent<BoxCollider2D>().enabled = false;
         }
     }
 }

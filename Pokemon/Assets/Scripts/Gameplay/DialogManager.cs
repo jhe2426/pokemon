@@ -9,7 +9,7 @@ public class DialogManager : MonoBehaviour
     [SerializeField] int lettersPerSecond;
 
     public event Action OnShowDialog;
-    public event Action OnCloseDialog;
+    public event Action OnDialogFunished;
 
     public static DialogManager Instance { get; private set; }
     private void Awake()
@@ -19,7 +19,7 @@ public class DialogManager : MonoBehaviour
 
     public bool IsShowing { get; private set; }
 
-    public IEnumerator ShowDialogText(string text, bool waitForInput=true, bool autoClose=true)
+    public IEnumerator ShowDialogText(string text, bool waitForInput = true, bool autoClose = true)
     {
         OnShowDialog?.Invoke();
         IsShowing = true;
@@ -35,13 +35,13 @@ public class DialogManager : MonoBehaviour
         {
             CloseDialog();
         }
+        OnDialogFunished?.Invoke();
     }
 
     public void CloseDialog()
     {
         dialogBox.SetActive(false);
         IsShowing = false;
-        OnCloseDialog?.Invoke();
     }
 
     public IEnumerator ShowDialog(Dialog dialog)
@@ -60,7 +60,7 @@ public class DialogManager : MonoBehaviour
 
         dialogBox.SetActive(false);
         IsShowing = false;
-        OnCloseDialog?.Invoke();
+        OnDialogFunished?.Invoke();
     }
 
     public void HandleUpdate()
