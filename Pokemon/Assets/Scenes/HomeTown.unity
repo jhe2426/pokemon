@@ -7083,6 +7083,51 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1581907550497564611, guid: 847276bacccb74627b614fe51ac21e3b, type: 3}
+      propertyPath: timeBetweenPattern
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1581907550497564611, guid: 847276bacccb74627b614fe51ac21e3b, type: 3}
+      propertyPath: movementPattern.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1581907550497564611, guid: 847276bacccb74627b614fe51ac21e3b, type: 3}
+      propertyPath: movementPattern.Array.data[0].x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1581907550497564611, guid: 847276bacccb74627b614fe51ac21e3b, type: 3}
+      propertyPath: movementPattern.Array.data[1].y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1581907550497564611, guid: 847276bacccb74627b614fe51ac21e3b, type: 3}
+      propertyPath: movementPattern.Array.data[2].x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1581907550497564611, guid: 847276bacccb74627b614fe51ac21e3b, type: 3}
+      propertyPath: movementPattern.Array.data[3].y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1847379997217442025, guid: 847276bacccb74627b614fe51ac21e3b, type: 3}
+      propertyPath: item
+      value: 
+      objectReference: {fileID: 11400000, guid: 3595f918e181e4c75927e0f148f92b02, type: 2}
+    - target: {fileID: 1847379997217442025, guid: 847276bacccb74627b614fe51ac21e3b, type: 3}
+      propertyPath: count
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1847379997217442025, guid: 847276bacccb74627b614fe51ac21e3b, type: 3}
+      propertyPath: dialog.lines.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1847379997217442025, guid: 847276bacccb74627b614fe51ac21e3b, type: 3}
+      propertyPath: 'dialog.lines.Array.data[0]'
+      value: "\uB2E4\uC74C \uB9C8\uC744 \uC0C1\uC810\uC5D0\uC11C \uBAAC\uC2A4\uD130\uBCFC
+        \uBA87 \uAC1C \uC0C0\uC5B4."
+      objectReference: {fileID: 0}
+    - target: {fileID: 1847379997217442025, guid: 847276bacccb74627b614fe51ac21e3b, type: 3}
+      propertyPath: 'dialog.lines.Array.data[1]'
+      value: "5\uAC1C \uC904\uAC8C"
+      objectReference: {fileID: 0}
     - target: {fileID: 3352013833705737268, guid: 847276bacccb74627b614fe51ac21e3b, type: 3}
       propertyPath: m_Name
       value: NPC
@@ -7093,11 +7138,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4733324493863892259, guid: 847276bacccb74627b614fe51ac21e3b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.5
+      value: -5.5
       objectReference: {fileID: 0}
     - target: {fileID: 4733324493863892259, guid: 847276bacccb74627b614fe51ac21e3b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.8
+      value: -0.8
       objectReference: {fileID: 0}
     - target: {fileID: 4733324493863892259, guid: 847276bacccb74627b614fe51ac21e3b, type: 3}
       propertyPath: m_LocalPosition.z
