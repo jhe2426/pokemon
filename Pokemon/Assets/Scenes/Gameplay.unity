@@ -654,6 +654,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -425
       objectReference: {fileID: 0}
+    - target: {fileID: 1061126973626967004, guid: 486051479e0764fae8e231311bd3ec5f, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 494.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 1061126973626967004, guid: 486051479e0764fae8e231311bd3ec5f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -138.13
+      objectReference: {fileID: 0}
     - target: {fileID: 1128714838796191295, guid: 486051479e0764fae8e231311bd3ec5f, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2746,6 +2754,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8319546897103075861, guid: 486051479e0764fae8e231311bd3ec5f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8443202911748222442, guid: 486051479e0764fae8e231311bd3ec5f, type: 3}
       propertyPath: m_AnchorMax.x
       value: 1
@@ -3157,7 +3169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wildPokemons:
   - _base: {fileID: 11400000, guid: 11aab467da0954107aac6933842410f8, type: 2}
-    level: 8
+    level: 12
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

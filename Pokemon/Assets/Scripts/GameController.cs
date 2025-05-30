@@ -208,6 +208,8 @@ public class GameController : MonoBehaviour
             SavingSystem.i.Load("saveSlot1");
             state = GameState.FreeRoam;
         }
-        
+
     }
+
+    public GameState State => state; 
 }
