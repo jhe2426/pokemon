@@ -7,7 +7,12 @@ using UnityEngine;
 public class NPCController : MonoBehaviour, Interactable
 {
     [SerializeField] Dialog dialog;
+
+    [Header("Quests")]
     [SerializeField] QuestBase questToStart;
+    [SerializeField] QuestBase questToComplete;
+
+    [Header("Movement")]
     [SerializeField] List<Vector2> movementPattern;
     [SerializeField] float timeBetweenPattern;
 
@@ -18,11 +23,13 @@ public class NPCController : MonoBehaviour, Interactable
 
     Character character;
     ItemGiver itemGiver;
+    PokemonGiver pokemonGiver;
 
     private void Awake()
     {
         character = GetComponent<Character>();
         itemGiver = GetComponent<ItemGiver>();
+        pokemonGiver = GetComponent<PokemonGiver>();
     }
 
     public IEnumerator Interact(Transform initiator)
@@ -32,32 +39,51 @@ public class NPCController : MonoBehaviour, Interactable
             state = NPCState.Dialog;
             character.LookTowars(initiator.position);
 
+            if (questToComplete != null)
+            {
+                var qeust = new Quest(questToComplete);
+                yield return qeust.CompleteQuest(initiator);
+                questToComplete = null;
+
+                Debug.Log($"{qeust.Base.Name} completed");
+            }
+
             if (itemGiver != null && itemGiver.CanBeGiven())
-            {
-                yield return itemGiver.GiveItem(initiator.GetComponent<PlayerController>());
-            }
-            else if (questToStart != null)
-            {
-                activeQuest = new Quest(questToStart);
-                yield return activeQuest.StartQuest();
-                questToStart = null;
-            }
-            else if (activeQuest != null)
-            {
-                if (activeQuest.CanBeCompleted())
                 {
-                    yield return activeQuest.CompleteQuest(initiator);
-                    activeQuest = null;
+                    yield return itemGiver.GiveItem(initiator.GetComponent<PlayerController>());
+                }
+                else if (pokemonGiver != null && pokemonGiver.CanBeGiven())
+                {
+                    yield return pokemonGiver.GivePokemon(initiator.GetComponent<PlayerController>());
+                }
+                else if (questToStart != null)
+                {
+                    activeQuest = new Quest(questToStart);
+                    yield return activeQuest.StartQuest();
+                    questToStart = null;
+
+                    if (activeQuest.CanBeCompleted())
+                    {
+                        yield return activeQuest.CompleteQuest(initiator);
+                        activeQuest = null;
+                    }
+                }
+                else if (activeQuest != null)
+                {
+                    if (activeQuest.CanBeCompleted())
+                    {
+                        yield return activeQuest.CompleteQuest(initiator);
+                        activeQuest = null;
+                    }
+                    else
+                    {
+                        yield return DialogManager.Instance.ShowDialog(activeQuest.Base.InProgressDialogue);
+                    }
                 }
                 else
-                { 
-                    yield return DialogManager.Instance.ShowDialog(activeQuest.Base.InProgressDialogue);
+                {
+                    yield return DialogManager.Instance.ShowDialog(dialog);
                 }
-            }
-            else
-            {
-                yield return DialogManager.Instance.ShowDialog(dialog);
-            }
 
             idleTimer = 0f;
             state = NPCState.Idle;
