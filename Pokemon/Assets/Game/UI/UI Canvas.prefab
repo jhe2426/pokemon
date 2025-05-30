@@ -3315,6 +3315,7 @@ MonoBehaviour:
   itemDescription: {fileID: 2353681834123715266}
   upArrow: {fileID: 3389440671042019378}
   downArrow: {fileID: 8038453699494078085}
+  partyScreen: {fileID: 5739715986403830785}
 --- !u!1 &6415849716135337508
 GameObject:
   m_ObjectHideFlags: 0
@@ -3761,8 +3762,8 @@ RectTransform:
   - {fileID: 4675483840270743745}
   - {fileID: 6536367728234187898}
   - {fileID: 8847599654569034830}
-  - {fileID: 7792508299541429545}
   - {fileID: 6169363058264514404}
+  - {fileID: 7792508299541429545}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -5586,6 +5587,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3bc9fd941b39344f88bb40813e9ed230, type: 3}
+--- !u!114 &5739715986403830785 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4675335890587313875, guid: 3bc9fd941b39344f88bb40813e9ed230, type: 3}
+  m_PrefabInstance: {fileID: 1100479744361384658}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bed54ccd55c2f46a2926cf888216c8fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &7792508299541429545 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7161072486260373499, guid: 3bc9fd941b39344f88bb40813e9ed230, type: 3}
