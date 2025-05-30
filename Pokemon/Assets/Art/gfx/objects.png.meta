@@ -374,7 +374,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: objects_12
+      name: book
       rect:
         serializedVersion: 2
         x: 247
@@ -3203,6 +3203,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
+      book: 571432506
       exclamation: 52442942
       objects_0: -1079640210
       objects_1: -1857394877
@@ -3228,7 +3229,6 @@ TextureImporter:
       objects_117: 750189824
       objects_118: 664421991
       objects_119: -614251846
-      objects_12: 571432506
       objects_120: -992925751
       objects_121: 587707644
       objects_122: 1791581652

@@ -432,4 +432,8 @@ MonoBehaviour:
     count: 5
   - item: {fileID: 11400000, guid: b306f231402554e6bb7a12bddcb12d22, type: 2}
     count: 2
-  tmSlots: []
+  tmSlots:
+  - item: {fileID: 11400000, guid: 97c4bf093e9ac4ed28b2978657c35d7e, type: 2}
+    count: 1
+  - item: {fileID: 11400000, guid: 6d8e394f19fe641e2a15c08bc33aa601, type: 2}
+    count: 1
