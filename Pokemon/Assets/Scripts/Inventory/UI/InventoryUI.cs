@@ -105,7 +105,7 @@ public class InventoryUI : MonoBehaviour
             }
 
             if (Input.GetKeyDown(KeyCode.Z))
-                ItemSelected();
+                StartCoroutine(ItemSelected());
             else if (Input.GetKeyDown(KeyCode.X))
                 onBack?.Invoke();
         }
@@ -134,8 +134,33 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
-    void ItemSelected()
+    IEnumerator ItemSelected()
     {
+        state = InventoryUIState.Busy;
+
+        var item = inventory.GetItem(selectedItem, selectedCategory);
+
+        if (GameController.Instance.State == GameState.Battle)
+        {
+            // In Battle
+            if (!item.CanUseInBattle)
+            {
+                yield return DialogManager.Instance.ShowDialogText($"이 아이템은 배틀에서는 사용할 수 없습니다.");
+                state = InventoryUIState.ItemSelection;
+                yield break;
+            }
+        }
+        else
+        {
+            // Outside Battle
+            if (!item.CanUseOutsideBattle)
+            {
+                yield return DialogManager.Instance.ShowDialogText($"이 아이템은 배틀 중에만 사용할 수 있습니다.");
+                state = InventoryUIState.ItemSelection;
+                yield break;
+            }
+        }
+
         if (selectedCategory == (int)ItemCategory.Pokeballs)
         {
             StartCoroutine(UseItem());
@@ -143,6 +168,9 @@ public class InventoryUI : MonoBehaviour
         else
         {
             OpenPartyScreen();
+
+            if (item is TmItem)
+                partyScreen.ShowIfTmIsUsable(item as TmItem);
         }
     }
 
@@ -163,7 +191,8 @@ public class InventoryUI : MonoBehaviour
         }
         else
         {
-            yield return DialogManager.Instance.ShowDialogText($"아무 일도 일어나지 않았다!");
+            if (usedItem is RecoveryItem)
+                yield return DialogManager.Instance.ShowDialogText($"아무 일도 일어나지 않았다!");
         }
 
         ClosePartyScreen();
@@ -176,18 +205,31 @@ public class InventoryUI : MonoBehaviour
             yield break;
 
         var pokemon = partyScreen.SelectedMember;
+
+        if (pokemon.HasMove(tmItem.Move))
+        {
+            yield return DialogManager.Instance.ShowDialogText($"{pokemon.Base.Name}은(는) {tmItem.Move.Name}을(를) 이미 배웠습니다.");
+            yield break;
+        }
+
+        if (!tmItem.CanBeTaught(pokemon))
+        {
+            yield return DialogManager.Instance.ShowDialogText($"{pokemon.Base.Name}은(는) {tmItem.Move.Name}을(를) 배울 수 없습니다.");
+            yield break;
+        }
+
         if (pokemon.Moves.Count < PokemonBase.MaxNumOfMoves)
-        {
-            pokemon.LearnMove(tmItem.Move);
-            yield return DialogManager.Instance.ShowDialogText($"{pokemon.Base.Name}은(는) {tmItem.Move.Name}을(를) 배웠다.");
-        }
-        else
-        {
-            yield return DialogManager.Instance.ShowDialogText($"{pokemon.Base.Name}이(가) {tmItem.Move.Name}을(를) 배우려고 한다!");
-            yield return DialogManager.Instance.ShowDialogText($"하지만 기술은 {PokemonBase.MaxNumOfMoves}개 이상 배울 수 없습니다.");
-            yield return ChooseMoveToForegt(pokemon, tmItem.Move);
-            yield return new WaitUntil(() => state != InventoryUIState.MoveToForget);
-        }
+            {
+                pokemon.LearnMove(tmItem.Move);
+                yield return DialogManager.Instance.ShowDialogText($"{pokemon.Base.Name}은(는) {tmItem.Move.Name}을(를) 배웠다.");
+            }
+            else
+            {
+                yield return DialogManager.Instance.ShowDialogText($"{pokemon.Base.Name}이(가) {tmItem.Move.Name}을(를) 배우려고 한다!");
+                yield return DialogManager.Instance.ShowDialogText($"하지만 기술은 {PokemonBase.MaxNumOfMoves}개 이상 배울 수 없습니다.");
+                yield return ChooseMoveToForegt(pokemon, tmItem.Move);
+                yield return new WaitUntil(() => state != InventoryUIState.MoveToForget);
+            }
     }
 
     IEnumerator ChooseMoveToForegt(Pokemon pokemon, MoveBase newMove)
@@ -258,6 +300,8 @@ public class InventoryUI : MonoBehaviour
     void ClosePartyScreen()
     {
         state = InventoryUIState.ItemSelection;
+
+        partyScreen.ClearMeberSlotMessages();
         partyScreen.gameObject.SetActive(false);
     }
 
