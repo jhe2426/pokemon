@@ -25,7 +25,7 @@ public class ConditionsDB
                 StartMessage = "독에 걸렸다!",
                 OnAfterTurn = (Pokemon pokemon) =>
                 {
-                    pokemon.UpdateHP(pokemon.MaxHp / 8);
+                    pokemon.DecreaseHP(pokemon.MaxHp / 8);
                     pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name}이(가) 독에 의해 고통받고 있다.");
                 }
             }
@@ -38,7 +38,7 @@ public class ConditionsDB
                 StartMessage = "화상을 입었다!",
                 OnAfterTurn = (Pokemon pokemon) =>
                 {
-                    pokemon.UpdateHP(pokemon.MaxHp / 16);
+                    pokemon.DecreaseHP(pokemon.MaxHp / 16);
                     pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name}은 화상으로 괴로워하고 있다!");
                 }
             }
@@ -139,7 +139,7 @@ public class ConditionsDB
                     
                     // Hurt by confusion
                     pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name}는 혼수 상태이다.");
-                    pokemon.UpdateHP(pokemon.MaxHp / 8);
+                    pokemon.DecreaseHP(pokemon.MaxHp / 8);
                     pokemon.StatusChanges.Enqueue($"혼란에 빠져서 스스로에게 피해를 입었다!");
                     return false;
                 }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -36,6 +37,8 @@ public class InventoryUI : MonoBehaviour
     private void Start()
     {
         UpdateItemList();
+
+        inventory.OnUpdated += UpdateItemList;
     }
 
     void UpdateItemList()
@@ -81,7 +84,7 @@ public class InventoryUI : MonoBehaviour
         {
             Action onSelected = () =>
             {
-                // Use the item on the selected pokemon
+                StartCoroutine(UseItem());
             };
 
             Action onBackPartyScreen = () =>
@@ -91,8 +94,25 @@ public class InventoryUI : MonoBehaviour
 
             partyScreen.HandleUpdate(onSelected, onBackPartyScreen);
         }
-
         
+    }
+
+    IEnumerator UseItem()
+    {
+        state = InventoryUIState.Busy;
+
+        var usedItem = inventory.UseItem(selectedItem, partyScreen.SelectedMember);
+
+        if (usedItem != null)
+        {
+            yield return DialogManager.Instance.ShowDialogText($"플레이어는 {usedItem.Name}을(를) 사용했다.");
+        }
+        else
+        {
+            yield return DialogManager.Instance.ShowDialogText($"아무 일도 일어나지 않았다!");
+        }
+
+        ClosePartyScreen();
     }
 
     void UpdateItemSelection()
